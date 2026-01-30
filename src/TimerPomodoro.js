@@ -23,7 +23,7 @@ class TimerPomodoro {
     this._maxCountTime = userConfig.maxCountTime
     this._maxSession = userConfig.maxSession
     this._maxBreakTime = userConfig.maxBreakTime
-    this._maxSession = userConfig.maxSession
+    this._maxLongTermBreakTime = userConfig.maxLongTermBreakTime
     this.currentTimer = new Timr(format(constants.minuteStrFormat, this._maxCountTime))
     FileUtils.copyFilesInSrcDirToDstDir('./sound', constants.userHomeLibrarySoundPath)
   }
@@ -58,7 +58,7 @@ class TimerPomodoro {
           title: pkg.name,
           message: format(constants.MESSAGE.COUNTDOWN_TIME_FINISHED, this._maxCountTime),
           icon: path.join(__dirname, '../images/pomodoro.png'),
-          sound: fs.existsSync(os.homedir(), '/Library/Sounds/', constants.soundFileForCountDown, '.mp3') ? constants.soundFileForCountDown : 'Blow',
+          sound: fs.existsSync(path.join(os.homedir(), 'Library/Sounds', constants.soundFileForCountDown + '.mp3')) ? constants.soundFileForCountDown : 'Blow',
           notifyTimeout: constants.notifyTimeout,
           wait: true // not working
         },
@@ -91,8 +91,8 @@ class TimerPomodoro {
       notifier.notify({
         title: pkg.name,
         message: format(constants.MESSAGE.BREAK_TIME_FINISHED, this._maxBreakTime),
-        icon: path.join(__dirname, `../images/break${this._getRandomNumber()}.png`),
-        sound: fs.existsSync(os.homedir(), '/Library/Sounds/', constants.soundFileForBreakTime, '.mp3') ? constants.soundFileForBreakTime : 'Blow',
+        icon: path.join(__dirname, `../images/break${this._getRandomNumber(1, 4)}.png`),
+        sound: fs.existsSync(path.join(os.homedir(), 'Library/Sounds', constants.soundFileForBreakTime + '.mp3')) ? constants.soundFileForBreakTime : 'Blow',
         notifyTimeout: constants.notifyTimeout,
         wait: true // not working
       }, function () {
