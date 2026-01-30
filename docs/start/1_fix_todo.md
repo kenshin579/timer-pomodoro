@@ -21,14 +21,14 @@
 
 ## Phase 4: 정리 및 테스트 프레임워크 전환
 
-- [ ] 4.1 `npm uninstall ascii-numbers piggy-bank` 실행
-- [ ] 4.2 `TimerPomodoro.js`에서 piggy-bank 관련 주석 코드 제거
-- [ ] 4.3 Mocha → Jest 전환: `npm uninstall mocha expect` 실행
-- [ ] 4.4 Jest 설치: `npm install --save-dev jest babel-jest` 실행
-- [ ] 4.5 `package.json`의 `scripts.test`를 `jest`로 변경, `scripts.coverage`를 `jest --coverage`로 변경
-- [ ] 4.6 `package.json`에 jest 설정 추가 (`transform`, `testMatch`)
-- [ ] 4.7 `test/TimerPomodoroTest.js` 삭제, `test/TimerPomodoro.test.js` 신규 작성 (Jest)
-- [ ] 4.8 테스트 작성: `_getRandomNumber` 범위 검증
-- [ ] 4.9 테스트 작성: constructor 설정값 할당 검증
-- [ ] 4.10 `npm run lint` 실행하여 코드 스타일 정리
-- [ ] 4.11 `npm test` 전체 테스트 통과 확인
+- [x] 4.1 `npm uninstall ascii-numbers piggy-bank` 실행
+- [x] 4.2 `TimerPomodoro.js`에서 piggy-bank 관련 주석 코드 제거
+- [x] 4.3 Mocha → Jest 전환: `npm uninstall mocha expect` 실행
+- [x] 4.4 Jest 설치: `npm install --save-dev jest babel-jest @babel/preset-env` 실행
+- [x] 4.5 `package.json`의 `scripts.test`를 `jest`로 변경, `scripts.coverage`를 `jest --coverage`로 변경
+- [x] 4.6 `package.json`에 jest 설정 추가 (`transform`, `testMatch`)
+- [x] 4.7 `test/TimerPomodoroTest.js` 삭제, `test/TimerPomodoro.test.js` 신규 작성 (Jest)
+- [x] 4.8 테스트 작성: `_getRandomNumber` 범위 검증
+- [x] 4.9 테스트 작성: constructor 설정값 할당 검증
+- [x] 4.10 `npm run lint` 실행하여 코드 스타일 정리
+- [x] 4.11 `npm test` 전체 테스트 통과 확인

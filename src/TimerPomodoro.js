@@ -11,8 +11,6 @@ import format from 'string-template'
 import pkg from '../package.json'
 import FileUtils from './FileUtils'
 
-// const getStorePath = () => path.join(require('os').homedir(), '.pomodoro_timer.json')
-// const localStorage = require('piggy-bank')(getStorePath())
 const pkgUpdateNotifier = updateNotifier({ pkg })
 
 // notify updates
