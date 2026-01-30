@@ -41,17 +41,18 @@ class TimerPomodoro {
   }
 
   _pomodoroTimer (currentSession) {
-    // start pomodoro timer
-    let sessionFormat = this._maxSession ? `Session ${currentSession} / ${this._maxSession}` : `Session ${currentSession} / 1`
+    let sessionFormat = this._maxSession
+      ? `Session ${currentSession} / ${this._maxSession}`
+      : `Session ${currentSession} / 1`
     let self = this
 
     if (this._maxCountTime) {
+      this.currentTimer = new Timr(format(constants.minuteStrFormat, this._maxCountTime))
       this.currentTimer.start()
-
       this._displayTicking(this.currentTimer, sessionFormat)
 
       this.currentTimer.finish(() => {
-        this._writeToSingleLine(`Countdown Finished ✔︎`)
+        this._writeToSingleLine('Countdown Finished ✔︎\n')
         currentSession = currentSession + 1
 
         notifier.notify({
@@ -60,43 +61,51 @@ class TimerPomodoro {
           icon: path.join(__dirname, '../images/pomodoro.png'),
           sound: fs.existsSync(path.join(os.homedir(), 'Library/Sounds', constants.soundFileForCountDown + '.mp3')) ? constants.soundFileForCountDown : 'Blow',
           notifyTimeout: constants.notifyTimeout,
-          wait: true // not working
+          wait: true
         },
         function () {
           self.currentTimer.stop()
 
-          if (currentSession <= self._maxSession) {
+          if (self._maxBreakTime) {
+            self._breakTimer(currentSession)
+          } else if (currentSession <= (self._maxSession || 1)) {
             self._pomodoroTimer(currentSession)
           }
-
-          if (self._maxBreakTime) {
-            self._breakTimer(self.currentTimer)
-          }
-        }
-        )
+        })
       })
     }
   }
 
-  _breakTimer (currentTimer) {
+  _breakTimer (currentSession) {
     let self = this
-    currentTimer = new Timr(format(constants.minuteStrFormat, this._maxBreakTime))
-    currentTimer.start()
+    let isLongBreak = this._maxLongTermBreakTime && this._maxSession && currentSession > this._maxSession
+    let breakTime = isLongBreak ? this._maxLongTermBreakTime : this._maxBreakTime
+    let breakMessage = isLongBreak
+      ? format(constants.MESSAGE.EXCEEDED_MAX_SESSION, this._maxSession, this._maxLongTermBreakTime)
+      : format(constants.MESSAGE.BREAK_TIME_FINISHED, this._maxBreakTime)
 
-    this._displayTicking(currentTimer)
+    this.currentTimer = new Timr(format(constants.minuteStrFormat, breakTime))
+    this.currentTimer.start()
+    this._displayTicking(this.currentTimer)
 
-    currentTimer.finish(() => {
-      this._writeToSingleLine(`Break Time Finished ✔︎`)
+    this.currentTimer.finish(() => {
+      this._writeToSingleLine('Break Time Finished ✔︎\n')
 
       notifier.notify({
         title: pkg.name,
-        message: format(constants.MESSAGE.BREAK_TIME_FINISHED, this._maxBreakTime),
+        message: breakMessage,
         icon: path.join(__dirname, `../images/break${this._getRandomNumber(1, 4)}.png`),
         sound: fs.existsSync(path.join(os.homedir(), 'Library/Sounds', constants.soundFileForBreakTime + '.mp3')) ? constants.soundFileForBreakTime : 'Blow',
         notifyTimeout: constants.notifyTimeout,
-        wait: true // not working
+        wait: true
       }, function () {
         self.currentTimer.stop()
+        if (isLongBreak) {
+          currentSession = 1
+        }
+        if (self._maxCountTime) {
+          self._pomodoroTimer(currentSession)
+        }
       })
     })
   }

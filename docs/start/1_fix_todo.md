@@ -5,14 +5,14 @@
 - [x] 1.1 `TimerPomodoro.js` constructor에서 `_maxSession` 중복 할당을 `_maxLongTermBreakTime` 할당으로 변경
 - [x] 1.2 `fs.existsSync` 호출 수정 (countdown 알림, break 알림 2곳) — `path.join()`으로 단일 경로 전달
 - [x] 1.3 `_getRandomNumber()` 호출에 인자 `(1, 4)` 전달
-- [ ] 1.4 `_breakTimer`에서 `this.currentTimer`에 새 타이머 할당 (SIGINT 핸들링 가능하도록)
+- [x] 1.4 `_breakTimer`에서 `this.currentTimer`에 새 타이머 할당 (SIGINT 핸들링 가능하도록)
 
 ## Phase 2: Major 로직 수정
 
-- [ ] 2.1 `_pomodoroTimer` notification 콜백 흐름 변경: break → 완료 → 다음 세션 (순차 실행)
-- [ ] 2.2 `_breakTimer`에 `currentSession` 파라미터 추가, break 완료 후 다음 세션 시작하는 콜백 연결
-- [ ] 2.3 Long-term break 분기 구현: `currentSession > _maxSession` 시 `_maxLongTermBreakTime` 사용
-- [ ] 2.4 Long-term break 후 세션 카운터 리셋
+- [x] 2.1 `_pomodoroTimer` notification 콜백 흐름 변경: break → 완료 → 다음 세션 (순차 실행)
+- [x] 2.2 `_breakTimer`에 `currentSession` 파라미터 추가, break 완료 후 다음 세션 시작하는 콜백 연결
+- [x] 2.3 Long-term break 분기 구현: `currentSession > _maxSession` 시 `_maxLongTermBreakTime` 사용
+- [x] 2.4 Long-term break 후 세션 카운터 리셋
 
 ## Phase 3: 안정성 개선
 
