@@ -121,8 +121,10 @@ class TimerPomodoro {
   }
 
   _writeToSingleLine (text) {
-    process.stdout.clearLine()
-    process.stdout.cursorTo(0)
+    if (process.stdout.isTTY) {
+      process.stdout.clearLine()
+      process.stdout.cursorTo(0)
+    }
     process.stdout.write(text)
   }
 

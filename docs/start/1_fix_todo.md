@@ -16,8 +16,8 @@
 
 ## Phase 3: 안정성 개선
 
-- [ ] 3.1 `constants.js`에서 `userHomeLibrarySoundPath`를 플랫폼별 분기 처리
-- [ ] 3.2 `_writeToSingleLine`에 `process.stdout.isTTY` 체크 추가
+- [x] 3.1 `constants.js`에서 `userHomeLibrarySoundPath`를 플랫폼별 분기 처리
+- [x] 3.2 `_writeToSingleLine`에 `process.stdout.isTTY` 체크 추가
 
 ## Phase 4: 정리 및 테스트 프레임워크 전환
 

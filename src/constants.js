@@ -1,4 +1,12 @@
 import os from 'os'
+import path from 'path'
+
+function getSoundPath () {
+  if (process.platform === 'darwin') {
+    return path.join(os.homedir(), 'Library', 'Sounds')
+  }
+  return path.join(os.homedir(), '.local', 'share', 'sounds')
+}
 
 const constants = {
   programName: 'timer-pomodoro',
@@ -8,10 +16,9 @@ const constants = {
   maxLongTermBreakTime: 15, // mins (15~30)
   maxSession: 4,
   notifyTimeout: 30,
-  // timeDisplayType: 'small',
   soundFileForCountDown: 'Clock-chimes',
   soundFileForBreakTime: 'Bell-sound-effect-ding',
-  userHomeLibrarySoundPath: os.homedir() + '/Library/Sounds',
+  userHomeLibrarySoundPath: getSoundPath(),
   MESSAGE: {
     COUNTDOWN_TIME_FINISHED: '{0}분동안 집중해서 작업하셨어요 ~~',
     BREAK_TIME_FINISHED: '{0}분동안 쉬셨어요~~',
