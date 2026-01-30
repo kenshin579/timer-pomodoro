@@ -36,9 +36,10 @@ createUserConfig()
 const timerPomodoro = new TimerPomodoro(userConfig).run()
 
 process.on('SIGINT', () => {
-  console.log('\nSIGTERM signal received.')
+  console.log('\nSIGINT signal received.')
   console.log('Terminating timer.')
   timerPomodoro.killRunningTimer()
+  process.exit(0)
 })
 
 function createUserConfig () {
