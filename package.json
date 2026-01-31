@@ -19,7 +19,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kenshin579/app-timer-pomodoro.git"
+    "url": "git+https://github.com/kenshin579/timer-pomodoro.git"
   },
   "keywords": [
     "console",
@@ -31,9 +31,9 @@
   "author": "Frank Oh <kenshin579@gmail.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kenshin579/app-timer-pomodoro/issues"
+    "url": "https://github.com/kenshin579/timer-pomodoro/issues"
   },
-  "homepage": "https://github.com/kenshin579/app-timer-pomodoro#readme",
+  "homepage": "https://github.com/kenshin579/timer-pomodoro#readme",
   "dependencies": {
     "commander": "^2.9.0",
     "get-installed-path": "^4.0.8",
